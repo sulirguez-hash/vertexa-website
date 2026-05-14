@@ -795,7 +795,7 @@ function Products() {
                   A Vertexa product
                 </span>
                 <span className="text-[10px] tracking-wide" style={{ color: "rgba(255,255,255,0.20)" }}>
-                  vaiter.app
+                  vaiterapp.com
                 </span>
               </div>
 
@@ -842,7 +842,7 @@ function Products() {
                   style={{ background: "rgba(16,185,129,0.10)" }}
                 />
                 <a
-                  href="https://vaiter.app"
+                  href="https://vaiterapp.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-200 group"
