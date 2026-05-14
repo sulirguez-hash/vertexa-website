@@ -6,6 +6,14 @@ export const metadata: Metadata = {
   description:
     "Vertexa builds scalable digital platforms for modern businesses. Creating focused technology products that simplify operations, connect workflows, and help businesses grow.",
   keywords: ["Vertexa", "technology", "SaaS", "digital platforms", "Vaiter", "restaurant technology"],
+  icons: {
+    icon: [
+      { url: "/vertexa-icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
   openGraph: {
     title: "Vertexa LLC — Connect. Innovate. Grow.",
     description:
