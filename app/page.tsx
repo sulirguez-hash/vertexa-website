@@ -51,7 +51,7 @@ function IconClose() {
 function VertexaLogo({ size = "default" }: { size?: "default" | "small" | "large" }) {
   const [src, setSrc] = useState("/vertexa-logo.png");
   const heightClass =
-    size === "small" ? "h-8" : size === "large" ? "h-12" : "h-10";
+    size === "small" ? "h-9" : size === "large" ? "h-16" : "h-10 lg:h-14";
 
   return (
     <Image
@@ -94,7 +94,7 @@ function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="flex items-center justify-between h-20 lg:h-24">
+        <div className="flex items-center justify-between h-20 lg:h-28">
           {/* Logo */}
           <a href="#" className="flex-shrink-0" aria-label="Vertexa home">
             <VertexaLogo />
@@ -169,7 +169,7 @@ function Header() {
 
 function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-20 lg:pt-24">
+    <section className="relative min-h-screen flex items-center overflow-hidden pt-20 lg:pt-28">
       {/* Backgrounds */}
       <div className="absolute inset-0 bg-[#0D1323]" />
       <div
@@ -254,9 +254,9 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right: Ecosystem visual */}
-          <div className="hidden lg:flex justify-end items-center">
-            <PlatformEcosystem />
+          {/* Right: Ecosystem card */}
+          <div className="hidden lg:flex justify-end items-start pt-4">
+            <EcosystemCard />
           </div>
         </div>
 
@@ -274,202 +274,330 @@ function Hero() {
   );
 }
 
-// ── Platform Ecosystem ─ decorative, abstract visualization of the Vertexa
-//    platform layer and the products it powers. Not a functional UI.
+// ── EcosystemCard ─ decorative visualization that communicates Vertexa as the
+//    technology company behind scalable digital products. Not a functional UI.
 
-function PlatformEcosystem() {
+function EcosystemCard() {
   return (
-    <div className="relative w-[460px] h-[540px] select-none">
-      {/* Ambient glow field */}
+    <div className="relative w-[430px] select-none">
+      {/* Ambient glow */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute -inset-20 rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 60% at 52% 44%, rgba(10,71,255,0.18) 0%, rgba(0,212,255,0.05) 48%, transparent 72%)",
+            "radial-gradient(ellipse 65% 60% at 50% 48%, rgba(10,71,255,0.16) 0%, rgba(0,212,255,0.05) 50%, transparent 72%)",
         }}
       />
 
-      {/* ── Platform base card ── */}
+      {/* ── Main card shell ── */}
       <div
-        className="absolute inset-x-0 top-0 bottom-[108px] rounded-[28px] overflow-hidden"
+        className="relative rounded-[26px] overflow-hidden"
         style={{
           background:
-            "linear-gradient(155deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          backdropFilter: "blur(24px)",
+            "linear-gradient(160deg, rgba(255,255,255,0.065) 0%, rgba(255,255,255,0.018) 100%)",
+          border: "1px solid rgba(255,255,255,0.10)",
+          backdropFilter: "blur(32px)",
+          boxShadow:
+            "0 0 120px rgba(10,71,255,0.10), 0 32px 80px rgba(0,0,0,0.40)",
         }}
       >
-        {/* Inner dot grid */}
+        {/* Top accent rule */}
         <div
-          className="absolute inset-0"
+          className="h-[1px]"
           style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-            maskImage:
-              "radial-gradient(ellipse 90% 60% at 50% 0%, black 0%, transparent 80%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 90% 60% at 50% 0%, black 0%, transparent 80%)",
+            background:
+              "linear-gradient(90deg, transparent 5%, rgba(10,71,255,0.55) 35%, rgba(0,212,255,0.65) 50%, rgba(10,71,255,0.55) 65%, transparent 95%)",
           }}
         />
 
-        {/* Top label */}
-        <div className="absolute top-6 left-6 flex items-center gap-2.5">
+        {/* ── 1. Header label ── */}
+        <div className="flex items-center gap-2.5 px-6 pt-5 pb-0">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" aria-hidden="true" />
           <span
-            className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse"
-            aria-hidden="true"
-          />
-          <span
-            className="text-[10px] tracking-[0.22em] uppercase font-medium text-white/30"
+            className="text-[10px] tracking-[0.24em] uppercase text-white/35 font-medium"
             style={{ fontFamily: "'Sora', sans-serif" }}
           >
-            Vertexa Platform
+            Vertexa Ecosystem
           </span>
         </div>
 
-        {/* Central Vertexa node */}
-        <div className="absolute inset-0 flex items-center justify-center" style={{ paddingBottom: "24px" }}>
-          <div className="relative flex items-center justify-center">
-            {/* Outer ring */}
+        {/* ── 2. Central logo + message ── */}
+        <div className="flex flex-col items-center px-6 pt-5 pb-5">
+          {/* Logo with glow */}
+          <div className="relative flex items-center justify-center mb-4">
             <div
-              className="absolute w-40 h-40 rounded-full"
-              style={{ border: "1px solid rgba(10,71,255,0.10)" }}
-            />
-            {/* Middle ring */}
-            <div
-              className="absolute w-24 h-24 rounded-full"
-              style={{ border: "1px solid rgba(10,71,255,0.15)" }}
-            />
-            {/* Glow */}
-            <div
-              className="absolute w-28 h-28 rounded-full"
+              className="absolute w-24 h-24 rounded-full pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(circle, rgba(10,71,255,0.30) 0%, transparent 70%)",
-                filter: "blur(18px)",
+                  "radial-gradient(circle, rgba(10,71,255,0.38) 0%, transparent 70%)",
+                filter: "blur(20px)",
               }}
             />
-            {/* Icon */}
             <div
-              className="relative w-[72px] h-[72px] rounded-2xl flex items-center justify-center"
+              className="relative w-[80px] h-[80px] rounded-2xl flex items-center justify-center"
               style={{
                 background:
-                  "linear-gradient(145deg, rgba(10,71,255,0.90) 0%, rgba(0,123,255,0.72) 100%)",
-                border: "1px solid rgba(10,71,255,0.55)",
+                  "linear-gradient(145deg, rgba(10,71,255,0.88) 0%, rgba(0,123,255,0.72) 100%)",
+                border: "1px solid rgba(10,71,255,0.50)",
                 boxShadow:
-                  "0 0 48px rgba(10,71,255,0.50), 0 0 96px rgba(0,212,255,0.10), inset 0 1px 0 rgba(255,255,255,0.22)",
+                  "0 0 52px rgba(10,71,255,0.48), 0 0 100px rgba(0,212,255,0.08), inset 0 1px 0 rgba(255,255,255,0.20)",
               }}
             >
               <Image
-                src="/vertexa-icon.svg"
+                src="/vertexa-sq-logo.svg"
                 alt="Vertexa"
-                width={36}
-                height={36}
-                className="w-9 h-9"
+                width={48}
+                height={48}
+                className="w-12 h-12 object-contain"
               />
             </div>
           </div>
+          <p
+            className="text-sm font-semibold text-white/85 mb-1.5 tracking-tight"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+          >
+            Vertexa Platform
+          </p>
+          <p className="text-[11px] text-white/35 text-center leading-relaxed max-w-[240px]">
+            Technology foundation for scalable digital products
+          </p>
         </div>
 
-        {/* Footer strip */}
+        {/* Section divider */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-px"
+          className="mx-5 h-px"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent)",
+          }}
+        />
+
+        {/* ── 3. Products layer ── */}
+        <div className="px-5 pt-4 pb-4 space-y-2">
+          <p
+            className="text-[9px] tracking-[0.24em] uppercase text-white/22 font-medium mb-3 px-0.5"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+          >
+            Products
+          </p>
+
+          {/* Vaiter — active, emerald */}
+          <div
+            className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(16,185,129,0.09) 0%, rgba(16,185,129,0.03) 100%)",
+              border: "1px solid rgba(16,185,129,0.20)",
+            }}
+          >
+            <div
+              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{
+                background: "rgba(16,185,129,0.12)",
+                border: "1px solid rgba(16,185,129,0.25)",
+              }}
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <rect x="1.5" y="4" width="11" height="7" rx="1.5" stroke="rgba(52,211,153,0.85)" strokeWidth="1.2" />
+                <path d="M4 4V3.2a1 1 0 012 0V4M8 4V3.2a1 1 0 012 0V4" stroke="rgba(52,211,153,0.85)" strokeWidth="1.2" strokeLinecap="round" />
+                <path d="M3.5 7.5h7" stroke="rgba(52,211,153,0.85)" strokeWidth="1.2" strokeLinecap="round" />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p
+                className="text-xs font-semibold text-white/80 leading-none mb-0.5"
+                style={{ fontFamily: "'Sora', sans-serif" }}
+              >
+                Vaiter
+              </p>
+              <p className="text-[10px] text-white/35">Restaurant technology</p>
+            </div>
+            <span className="flex items-center gap-1.5 text-[9px] font-medium flex-shrink-0" style={{ color: "rgba(52,211,153,0.80)" }}>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              Live
+            </span>
+          </div>
+
+          {/* Future platforms */}
+          <div
+            className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl"
+            style={{
+              background: "rgba(255,255,255,0.025)",
+              border: "1px solid rgba(255,255,255,0.065)",
+            }}
+          >
+            <div
+              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{
+                background: "rgba(255,255,255,0.03)",
+                border: "1px dashed rgba(255,255,255,0.12)",
+              }}
+            >
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                <path d="M5 2v6M2 5h6" stroke="rgba(255,255,255,0.22)" strokeWidth="1.3" strokeLinecap="round" />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p
+                className="text-xs font-medium leading-none mb-0.5"
+                style={{ color: "rgba(255,255,255,0.32)", fontFamily: "'Sora', sans-serif" }}
+              >
+                Future platforms
+              </p>
+              <p className="text-[10px]" style={{ color: "rgba(107,114,128,0.45)" }}>
+                In development
+              </p>
+            </div>
+            <span
+              className="text-[9px] px-2 py-0.5 rounded-full flex-shrink-0"
+              style={{
+                background: "rgba(107,114,128,0.08)",
+                border: "1px solid rgba(107,114,128,0.14)",
+                color: "rgba(107,114,128,0.55)",
+              }}
+            >
+              Soon
+            </span>
+          </div>
+
+          {/* Integrations */}
+          <div
+            className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl"
+            style={{
+              background: "rgba(255,255,255,0.025)",
+              border: "1px solid rgba(255,255,255,0.065)",
+            }}
+          >
+            <div
+              className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0"
+              style={{
+                background: "rgba(255,255,255,0.03)",
+                border: "1px dashed rgba(255,255,255,0.12)",
+              }}
+            >
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <circle cx="3" cy="6" r="1.5" stroke="rgba(255,255,255,0.22)" strokeWidth="1" />
+                <circle cx="9" cy="6" r="1.5" stroke="rgba(255,255,255,0.22)" strokeWidth="1" />
+                <path d="M4.5 6h3" stroke="rgba(255,255,255,0.22)" strokeWidth="1" strokeLinecap="round" />
+              </svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p
+                className="text-xs font-medium leading-none mb-0.5"
+                style={{ color: "rgba(255,255,255,0.32)", fontFamily: "'Sora', sans-serif" }}
+              >
+                Integrations
+              </p>
+              <p className="text-[10px]" style={{ color: "rgba(107,114,128,0.45)" }}>
+                Coming soon
+              </p>
+            </div>
+            <span
+              className="text-[9px] px-2 py-0.5 rounded-full flex-shrink-0"
+              style={{
+                background: "rgba(107,114,128,0.08)",
+                border: "1px solid rgba(107,114,128,0.14)",
+                color: "rgba(107,114,128,0.55)",
+              }}
+            >
+              Soon
+            </span>
+          </div>
+        </div>
+
+        {/* Section divider */}
+        <div
+          className="mx-5 h-px"
           style={{
             background:
               "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)",
           }}
         />
-        <div className="absolute bottom-0 left-0 right-0 px-6 py-3.5 flex items-center justify-between">
-          <p className="text-[10px] text-white/18 tracking-wide">
-            Technology infrastructure
+
+        {/* ── 4. Business outcomes ── */}
+        <div className="px-5 pt-4 pb-4">
+          <p
+            className="text-[9px] tracking-[0.24em] uppercase text-white/22 font-medium mb-3 px-0.5"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+          >
+            Business outcomes
+          </p>
+          <div className="grid grid-cols-3 gap-2">
+            {[
+              {
+                icon: (
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M7 1.5L2 4v3.5c0 2.5 2 4.5 5 5 3-0.5 5-2.5 5-5V4L7 1.5z" stroke="rgba(0,212,255,0.55)" strokeWidth="1.1" strokeLinejoin="round" />
+                    <path d="M5 7l1.5 1.5L9 5.5" stroke="rgba(0,212,255,0.55)" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
+                label: "Secure",
+                sub: "infrastructure",
+              },
+              {
+                icon: (
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <rect x="2" y="8.5" width="10" height="2" rx="1" stroke="rgba(0,212,255,0.55)" strokeWidth="1.1" />
+                    <rect x="3.5" y="5.5" width="7" height="2" rx="1" stroke="rgba(0,212,255,0.55)" strokeWidth="1.1" />
+                    <rect x="5" y="2.5" width="4" height="2" rx="1" stroke="rgba(0,212,255,0.55)" strokeWidth="1.1" />
+                  </svg>
+                ),
+                label: "Scalable",
+                sub: "architecture",
+              },
+              {
+                icon: (
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M3 10.5l8-8M11 2.5H6M11 2.5v5" stroke="rgba(0,212,255,0.55)" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
+                label: "Product-led",
+                sub: "growth",
+              },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="flex flex-col items-center gap-1.5 px-2 py-3 rounded-xl"
+                style={{
+                  background: "rgba(255,255,255,0.025)",
+                  border: "1px solid rgba(255,255,255,0.055)",
+                }}
+              >
+                {item.icon}
+                <p
+                  className="text-[9px] font-semibold leading-none"
+                  style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'Sora', sans-serif" }}
+                >
+                  {item.label}
+                </p>
+                <p
+                  className="text-[8px] leading-none"
+                  style={{ color: "rgba(255,255,255,0.20)" }}
+                >
+                  {item.sub}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── Bottom strip ── */}
+        <div
+          className="px-6 py-3.5 flex items-center justify-between"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
+        >
+          <p className="text-[9px] tracking-wide" style={{ color: "rgba(255,255,255,0.14)" }}>
+            Powered by Vertexa LLC
           </p>
           <div className="flex gap-1.5 items-center">
             {["#0A47FF", "#007BFF", "#00D4FF"].map((c, i) => (
               <span
                 key={i}
                 className="w-1 h-1 rounded-full"
-                style={{ background: c, opacity: 0.45 }}
+                style={{ background: c, opacity: 0.38 }}
               />
             ))}
           </div>
-        </div>
-      </div>
-
-      {/* ── Vaiter product node (bottom-right) ── */}
-      <div
-        className="absolute bottom-0 right-0 w-56 rounded-2xl overflow-hidden"
-        style={{
-          background: "linear-gradient(145deg, #0E1318 0%, #080C10 100%)",
-          border: "1px solid rgba(16,185,129,0.20)",
-          boxShadow:
-            "0 0 48px rgba(16,185,129,0.08), 0 12px 40px rgba(0,0,0,0.50)",
-        }}
-      >
-        {/* Emerald top rule */}
-        <div
-          className="h-[1px]"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, rgba(52,211,153,0.55), transparent)",
-          }}
-        />
-        <div className="px-4 pt-4 pb-4">
-          <Image
-            src="/logo-vaiter-on-black.png"
-            alt="Vaiter"
-            width={400}
-            height={120}
-            className="h-6 w-auto object-contain object-left mb-2.5"
-          />
-          <p className="text-[10px] text-white/35 mb-3 leading-relaxed">
-            Restaurant technology platform
-          </p>
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[10px] text-emerald-400/75 font-medium">Live</span>
-            <span
-              className="ml-auto text-[9px] px-2 py-0.5 rounded-full"
-              style={{
-                background: "rgba(16,185,129,0.08)",
-                border: "1px solid rgba(16,185,129,0.18)",
-                color: "rgba(52,211,153,0.65)",
-              }}
-            >
-              A Vertexa product
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Future platform node (bottom-left, ghost) ── */}
-      <div
-        className="absolute bottom-6 left-0 w-36 rounded-2xl overflow-hidden"
-        style={{
-          background: "rgba(255,255,255,0.02)",
-          border: "1px dashed rgba(255,255,255,0.07)",
-        }}
-      >
-        <div className="px-3.5 py-3.5">
-          <div
-            className="w-6 h-6 rounded-lg mb-2.5 flex items-center justify-center"
-            style={{
-              background: "rgba(255,255,255,0.02)",
-              border: "1px dashed rgba(255,255,255,0.09)",
-            }}
-          >
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-              <path d="M5 2v6M2 5h6" stroke="rgba(255,255,255,0.18)" strokeWidth="1.2" strokeLinecap="round" />
-            </svg>
-          </div>
-          <p
-            className="text-[10px] font-medium"
-            style={{ color: "rgba(255,255,255,0.18)", fontFamily: "'Sora', sans-serif" }}
-          >
-            Platform 02
-          </p>
-          <p className="text-[9px] mt-0.5" style={{ color: "rgba(107,114,128,0.38)" }}>
-            Coming soon
-          </p>
         </div>
       </div>
     </div>
